@@ -13,7 +13,7 @@ namespace ORM_Workshop_Exercise.Models
     {
         Y, N
     }
-    public class Person
+    public abstract class Person
     {
         public Guid PersonId { get; set; }
         public String PersonName { get; set; }

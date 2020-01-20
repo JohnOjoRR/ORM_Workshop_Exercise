@@ -9,8 +9,8 @@ namespace ORM_Workshop_Exercise.Models
     {
         public Guid VisitsId { get; set; }
         public Guid DoctorId { get; set; }
-        public Doctor Doctor { get; set; }
+        //public Doctor Doctor { get; set; }
         public Guid ClientId { get; set; }
-        public Client Client { get; set; }
+        //public Client Client { get; set; }
     }
 }

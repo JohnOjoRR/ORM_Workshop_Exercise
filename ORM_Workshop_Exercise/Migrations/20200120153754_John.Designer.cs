@@ -10,7 +10,7 @@ using ORM_Workshop_Exercise.DAL;
 namespace ORM_Workshop_Exercise.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    [Migration("20200120152836_John")]
+    [Migration("20200120153754_John")]
     partial class John
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,10 +87,6 @@ namespace ORM_Workshop_Exercise.Migrations
 
                     b.HasKey("VisitsId");
 
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("DoctorId");
-
                     b.ToTable("Visits");
                 });
 
@@ -134,21 +130,6 @@ namespace ORM_Workshop_Exercise.Migrations
                     b.HasIndex("PersonId1");
 
                     b.HasDiscriminator().HasValue("Doctor");
-                });
-
-            modelBuilder.Entity("ORM_Workshop_Exercise.Models.Visits", b =>
-                {
-                    b.HasOne("ORM_Workshop_Exercise.Models.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ORM_Workshop_Exercise.Models.Doctor", "Doctor")
-                        .WithMany()
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("ORM_Workshop_Exercise.Models.Client", b =>

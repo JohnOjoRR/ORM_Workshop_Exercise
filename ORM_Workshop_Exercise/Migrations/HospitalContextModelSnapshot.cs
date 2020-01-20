@@ -85,10 +85,6 @@ namespace ORM_Workshop_Exercise.Migrations
 
                     b.HasKey("VisitsId");
 
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("DoctorId");
-
                     b.ToTable("Visits");
                 });
 
@@ -132,21 +128,6 @@ namespace ORM_Workshop_Exercise.Migrations
                     b.HasIndex("PersonId1");
 
                     b.HasDiscriminator().HasValue("Doctor");
-                });
-
-            modelBuilder.Entity("ORM_Workshop_Exercise.Models.Visits", b =>
-                {
-                    b.HasOne("ORM_Workshop_Exercise.Models.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ORM_Workshop_Exercise.Models.Doctor", "Doctor")
-                        .WithMany()
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("ORM_Workshop_Exercise.Models.Client", b =>
