@@ -7,10 +7,10 @@ namespace ORM_Workshop_Exercise.Models
 {
     public class Visits
     {
-        public Guid VisitID { get; set; }
-        public Guid DoctorID { get; set; }
-        public Guid ClientID { get; set; }
-        public virtual Doctor Doctor { get; set; }
-        public virtual Client Client { get; set; }
+        public Guid VisitsId { get; set; }
+        public Guid DoctorId { get; set; }
+        public Doctor Doctor { get; set; }
+        public Guid ClientId { get; set; }
+        public Client Client { get; set; }
     }
 }

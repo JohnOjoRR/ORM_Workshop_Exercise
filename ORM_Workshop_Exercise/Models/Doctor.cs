@@ -5,12 +5,17 @@ using System.Threading.Tasks;
 
 namespace ORM_Workshop_Exercise.Models
 {
-    public class Doctor
+    public enum Specialist
     {
-        public Guid DoctorID { get; set; }
-        public Guid ClientID { get; set; }
-        public Guid Specialist { get; set; }
+        Y, N
+    }
+    public class Doctor : Person
+    {
+        public Guid DoctorId { get; set; }
+        public Guid PersonId { get; set; }
+        public Person Person { get; set; }
+        public Specialist Specialist { get; set; }
         public String CountryCode { get; set; }
-        public virtual ICollection<Visits> Visits { get; set; }
+        //public virtual ICollection<Visits> Visits { get; set; }
     }
 }

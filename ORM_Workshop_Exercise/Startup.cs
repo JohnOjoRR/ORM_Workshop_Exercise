@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ORM_Workshop_Exercise.DAL;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace ORM_Workshop_Exercise
 {
@@ -22,8 +25,14 @@ namespace ORM_Workshop_Exercise
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {                       
+            services.AddDbContext<HospitalContext>(options => {
+                //options.UseSqlServer(Configuration.GetConnectionString("HospitalConnectionString"));
+                //options.UseSqlServer("HospitalConnectionString");
+                options.UseSqlServer("Server=JOHNOJO;Database=HospitalContext;Trusted_Connection=True;");
+            });
             services.AddControllersWithViews();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

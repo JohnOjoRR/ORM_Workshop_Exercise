@@ -7,7 +7,7 @@ namespace ORM_Workshop_Exercise.Models
 {
     public class Illness
     {
-        public Guid IllnessID { get; set; }
+        public Guid IllnessId { get; set; }
         public String IllnessName { get; set; }
     }
 }
