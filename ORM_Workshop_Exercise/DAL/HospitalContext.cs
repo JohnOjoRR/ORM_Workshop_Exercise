@@ -16,15 +16,10 @@ namespace ORM_Workshop_Exercise.DAL
 
         }
 
-        public DbSet<Person> Companies
-        {
-            get;
-            set;
-        }
-
         public DbSet<Person> Person { get; set; }
         public DbSet<Doctor> Doctor { get; set; }
         public DbSet<Visits> Visits { get; set; }
         public DbSet<Client> Client { get; set; }
+        public DbSet<Illness> Illness { get; set; }
     }
 }

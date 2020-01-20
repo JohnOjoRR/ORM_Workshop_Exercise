@@ -10,7 +10,7 @@ using ORM_Workshop_Exercise.DAL;
 namespace ORM_Workshop_Exercise.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    [Migration("20200120153754_John")]
+    [Migration("20200120195057_John")]
     partial class John
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,13 +79,17 @@ namespace ORM_Workshop_Exercise.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ClientId")
+                    b.Property<Guid?>("ClientId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("DoctorId")
+                    b.Property<Guid?>("DoctorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("VisitsId");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("DoctorId");
 
                     b.ToTable("Visits");
                 });
@@ -130,6 +134,17 @@ namespace ORM_Workshop_Exercise.Migrations
                     b.HasIndex("PersonId1");
 
                     b.HasDiscriminator().HasValue("Doctor");
+                });
+
+            modelBuilder.Entity("ORM_Workshop_Exercise.Models.Visits", b =>
+                {
+                    b.HasOne("ORM_Workshop_Exercise.Models.Client", "Client")
+                        .WithMany("Visits")
+                        .HasForeignKey("ClientId");
+
+                    b.HasOne("ORM_Workshop_Exercise.Models.Doctor", "Doctor")
+                        .WithMany("Visits")
+                        .HasForeignKey("DoctorId");
                 });
 
             modelBuilder.Entity("ORM_Workshop_Exercise.Models.Client", b =>

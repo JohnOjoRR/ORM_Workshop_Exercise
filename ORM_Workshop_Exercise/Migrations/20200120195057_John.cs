@@ -20,19 +20,6 @@ namespace ORM_Workshop_Exercise.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Visits",
-                columns: table => new
-                {
-                    VisitsId = table.Column<Guid>(nullable: false),
-                    DoctorId = table.Column<Guid>(nullable: false),
-                    ClientId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Visits", x => x.VisitsId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Person",
                 columns: table => new
                 {
@@ -76,6 +63,31 @@ namespace ORM_Workshop_Exercise.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Visits",
+                columns: table => new
+                {
+                    VisitsId = table.Column<Guid>(nullable: false),
+                    DoctorId = table.Column<Guid>(nullable: true),
+                    ClientId = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Visits", x => x.VisitsId);
+                    table.ForeignKey(
+                        name: "FK_Visits_Person_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Person",
+                        principalColumn: "PersonId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Visits_Person_DoctorId",
+                        column: x => x.DoctorId,
+                        principalTable: "Person",
+                        principalColumn: "PersonId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Person_IllnessId",
                 table: "Person",
@@ -90,15 +102,25 @@ namespace ORM_Workshop_Exercise.Migrations
                 name: "IX_Person_Doctor_PersonId1",
                 table: "Person",
                 column: "Doctor_PersonId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Visits_ClientId",
+                table: "Visits",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Visits_DoctorId",
+                table: "Visits",
+                column: "DoctorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Person");
+                name: "Visits");
 
             migrationBuilder.DropTable(
-                name: "Visits");
+                name: "Person");
 
             migrationBuilder.DropTable(
                 name: "Illness");
